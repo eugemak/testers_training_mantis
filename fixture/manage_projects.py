@@ -78,3 +78,12 @@ class ProjectHelper:
         if self.users_cache is None:
             self.get_projects_from_table()
         return list(self.users_cache)
+
+    def get_projects_list_from_soap(self, unparsed_list):
+        parsed_list = []
+        for item in unparsed_list:
+            project_id = item.id
+            name = item.name
+            description = item.description
+            parsed_list.append(Project(project_id=project_id, name=name, description=description))
+        return parsed_list
